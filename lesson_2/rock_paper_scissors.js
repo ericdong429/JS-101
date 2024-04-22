@@ -49,7 +49,7 @@ function roundWinner(playerChoice, computerChoice,) {
     playerScores += 1;
   } else if (computerWins(computerChoice, playerChoice)) {
     console.log("Computer Wins");
-    computerScores += 1;
+   computerScores += 1;
   } else {
     console.log("It's a tie!");
   }
@@ -58,11 +58,10 @@ function roundWinner(playerChoice, computerChoice,) {
 function displayGameWinner(playerScores, computerScores) {
   if (playerScores === 3) {
     console.log("The Player Won the Game!");
-
+    return true;
   } else if (computerScores >= 3) {
     console.log("The Computer Won the Game!");
-
-
+    return true;
   }
 }
 
@@ -98,6 +97,7 @@ while (true) {
     if (answer[0] !== 'y') {
       break;
     }
+    console.clear();
   } else {
     prompt('Would you like to continue and play another round (y/n)?');
     let answer = readline.question().toLowerCase();
