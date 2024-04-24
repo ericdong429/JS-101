@@ -3,10 +3,17 @@
 //Ask the user for an operation to perform.
 //Perfrom the operation on the two numbers.
 //Print the result to the terminal.
+const LANGUAGE = 'en';
 
+const MESSAGES = require('./calculator_messages.json');
 const readline = require('readline-sync');
 
-function prompt(message) {
+function messages(message, lang='en') {
+  return MESSAGES[lang][message];
+}
+
+function prompt(key) {
+  let message = messages(key, LANGUAGE);
   console.log(`=> ${message}`);
 }
 
@@ -14,25 +21,25 @@ function invalidNumber(number) {
   return number.trimStart() === '' || Number.isNaN(Number(number));
 }
 
-prompt("Welcome to Eric's Calculator!");
+prompt('welcome');
 
 while (true) {
   prompt("What's the first number?");
   let number1 = readline.question();
-  
+
   while (invalidNumber(number1)) {
     prompt("Hmm... that doesn't look like a valid number.");
     number1 = readline.question();
   }
-  
+
   prompt("What's the second number?");
   let number2 = readline.question();
-  
+
   while (invalidNumber(number1)) {
     prompt("Hmm... that doesn't look like a valid number.");
     number1 = readline.question();
   }
-  
+
   prompt(
     "What operation would you like to perform?\n1) Add 2) Subtract 3) Multiply 4) Divide"
   );
@@ -41,7 +48,7 @@ while (true) {
     prompt('Must choose 1, 2, 3 or 4');
     operation = readline.question();
   }
-  
+
   let output;
   switch (operation) {
     case '1':
@@ -57,7 +64,7 @@ while (true) {
       output = Number(number1) / Number(number2);
       break;
   }
-  
+
   prompt(`The result is ${output}`);
 
   prompt('would you like to perform another operation? (y/n)');
