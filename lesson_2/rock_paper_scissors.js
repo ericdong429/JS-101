@@ -1,3 +1,4 @@
+const MESSAGES = require('./rps_messages.json');
 const readline = require('readline-sync');
 
 const WINNING_MOVES = {
@@ -36,22 +37,27 @@ function abbreviatedChoice(choice) {
 
 function displayChoices(playerChoice, computerChoice) {
   prompt(`You chose ${playerChoice}, computer chose ${computerChoice}`);
+  prompt(MESSAGES['graphics']['lines']);
 }
 
 function displayCurrentScore(playerScore, computerScore) {
   console.log(`The current player score is ${playerScore} and computer is ${computerScore}!`);
+  prompt(MESSAGES['graphics']['lines']);
 }
 
 function roundWinner(playerChoice, computerChoice,) {
   displayChoices(playerChoice, computerChoice);
   if (playerWins(playerChoice, computerChoice)) {
     console.log("Player Wins");
+    prompt(MESSAGES['graphics']['lines']);
     playerScores += 1;
   } else if (computerWins(computerChoice, playerChoice)) {
     console.log("Computer Wins");
-   computerScores += 1;
+    prompt(MESSAGES['graphics']['lines']);
+    computerScores += 1;
   } else {
     console.log("It's a tie!");
+    prompt(MESSAGES['graphics']['lines']);
   }
 }
 
@@ -65,13 +71,30 @@ function displayGameWinner(playerScores, computerScores) {
   }
 }
 
+function gameIntroduction() {
+  prompt(MESSAGES['welcomePrompt']);
+  prompt(MESSAGES['graphics']['lines']);
+  prompt(MESSAGES['rules']);
+  prompt(MESSAGES['winningConditions']['rocks']);
+  prompt(MESSAGES['winningConditions']['paper']);
+  prompt(MESSAGES['winningConditions']['scissors']);
+  prompt(MESSAGES['winningConditions']['lizard']);
+  prompt(MESSAGES['winningConditions']['spock']);
+  prompt(MESSAGES['graphics']['lines']);
+}
+
+gameIntroduction();
+
 while (true) {
   prompt(`Choose one: ${VALID_CHOICES.join(', ')}
   or ${CHOICE_ABBRS.join(', ')}`);
 
+  prompt(MESSAGES['graphics']['lines']);
+
   let playerChoice = readline.question();
   while (!VALID_CHOICES.includes(playerChoice) && !CHOICE_ABBRS.includes(playerChoice)) {
     prompt("That's not a valid choice");
+    prompt(MESSAGES['graphics']['lines']);
     playerChoice = readline.question();
   }
 
@@ -89,20 +112,25 @@ while (true) {
     playerScores = 0;
     computerScores = 0;
     prompt('Would you like to continue and play another game (y/n)?');
+    prompt(MESSAGES['graphics']['lines']);
     let answer = readline.question().toLowerCase();
     while (answer[0] !== 'n' && answer !== 'y') {
       prompt('Please enter "y" or "n"!');
+      prompt(MESSAGES['graphics']['lines']);
       answer = readline.question().toLowerCase();
     }
     if (answer[0] !== 'y') {
       break;
     }
     console.clear();
+    gameIntroduction();
   } else {
     prompt('Would you like to continue and play another round (y/n)?');
+    prompt(MESSAGES['graphics']['lines']);
     let answer = readline.question().toLowerCase();
     while (answer[0] !== 'n' && answer !== 'y') {
       prompt('Please enter "y" or "n"!');
+      prompt(MESSAGES['graphics']['lines']);
       answer = readline.question().toLowerCase();
     }
 

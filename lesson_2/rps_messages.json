@@ -1,0 +1,14 @@
+{
+  "graphics": {
+    "lines": "-----------------------------------------------------"
+  },
+  "welcomePrompt": "Welcome to Eric's Rock Paper scissors lizard and spock",
+  "rules": "The rules are similar to the standard rock paper scissors game. \nHowever, there are two added options - Lizard and Spock.",
+  "winningConditions": {
+    "rocks": "Rock beats scissors and lizard.",
+    "paper": "Paper beats rock and spock.",
+    "scissors": "Scissors beats paper and lizard.",
+    "lizard": "Lizard beats paper and spock.",
+    "spock": "Spock beats scissors and rock."
+  }
+}
